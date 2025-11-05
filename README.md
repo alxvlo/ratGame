@@ -1,35 +1,28 @@
-# Pathfinder: Person Guessing Game (Binary Tree)
+# PathFinder: Akinator-style Person Guessing Game
 
-This is a lightweight, client‑side web app that mimics an Akinator‑style game using a **binary decision tree**.
+Pure front-end (HTML + CSS + JS) binary decision tree that learns new people when it guesses wrong. Runs 100% in the browser (localStorage), perfect for GitHub Pages.
 
-## How it works
-- Each **question node** is `{ q: "...", yes: Node, no: Node }`.
-- Each **leaf node** is `{ a: "Person Name" }`.
-- When the app guesses wrong, it asks you for:
-  - the correct person
-  - a distinguishing yes/no question
-  - which side (`yes`/`no`) the correct person belongs to
-- It then **replaces** the incorrect leaf with a new question node and **persists** to localStorage (if enabled).
+## Features
+- Yes / No / Probably / Probably Not / I don’t know
+- Learn-as-you-go: add a new person + distinguishing question
+- Undo & Restart
+- Export / Import JSON
+- No backend or build step required
 
-## Files
-- `index.html` — minimal UI & controls
-- `styles.css` — simple dark theme
-- `app.js` — core game logic + SVG path visualization
-- `data/initial_tree.json` — starter dataset
-- `README.md` — this file
+## How to run locally
+Just open `index.html` in a browser.
 
-## Run locally
-Just open `index.html` in your browser. For stricter browsers you might prefer a tiny HTTP server:
-```bash
-# Python 3
-python -m http.server 8080
-# then visit http://localhost:8080
-```
+## Deploy on GitHub Pages
+1. Create a new repo (e.g., `pathfinder`).
+2. Add these files to the repo: `index.html`, `styles.css`, `app.js`.
+3. Commit & push.
+4. In the repo settings, enable **Pages** → Deploy from `main` branch, `/ (root)`.
+5. Wait for the green check, then visit the Pages URL.
 
-## Import/Export
-- Use the buttons in the Dataset section to **export** the learned tree or **import** a saved JSON file.
-- Toggle **Persist to this browser** to enable/disable localStorage.
+## Add more people
+- Play until the guess is wrong.
+- The app will ask you for the correct person and a yes/no question that distinguishes them from the wrong guess.
+- Your changes are saved locally (localStorage). Use **Export** to save a JSON copy.
 
-## Notes
-- Everything runs in the browser — no backend required.
-- The visualization shows a small neighborhood of the tree and highlights your current path.
+## License
+MIT
