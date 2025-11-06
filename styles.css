@@ -1,71 +1,201 @@
-/* Minimal, readable styles (external file as requested). No frameworks. */
-:root {
-  --bg: #0b0f17;
-  --card: #121826;
-  --text: #e8f0ff;
-  --muted: #9fb0c0;
-  --accent: #6aa4ff;
-  --yes: #1fd08f;
-  --no: #ff6b6b;
+:root{
+  /* Soft-light palette */
+  --bg:#f5f7fa;
+  --card:#ffffff;
+  --text:#0b1426;
+  --muted:#5a6c82;
+  --accent:#2b74ff;
+  --yes:#2ecc71;
+  --no:#e74c3c;
 }
 
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
-}
+*{ box-sizing:border-box }
 
-header, footer {
-  padding: 16px;
-  text-align: center;
-  background: #0e1524;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
-
-.subtitle { color: var(--muted); margin-top: 4px; }
-
-main { max-width: 860px; margin: 0 auto; padding: 16px; display: grid; gap: 16px; }
-
-section { background: var(--card); padding: 16px; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; }
-
-#prompt { font-size: 1.25rem; margin: 0 0 12px; }
-
-.buttons, .secondary, .io { display: flex; gap: 8px; flex-wrap: wrap; }
-
-button, .file-label {
-  appearance: none;
-  border: none;
-  background: #25324a;
-  color: var(--text);
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-#btnYes { background: var(--yes); color: #062217; }
-#btnNo  { background: var(--no);  color: #2a0c0c; }
-#btnProb, #btnPNot, #btnIDK { background: #32415f; }
-#btnUndo, #btnRestart { background: #2b3750; }
-#btnExport { background: var(--accent); color: #061426; }
-
-.file-label { border: 1px dashed rgba(255,255,255,.25); }
-#fileImport { display: none; }
-
-#status { color: var(--muted); margin-top: 8px; font-size: .95rem; }
-h2, h3 { margin: 0 0 8px; }
-
-footer { border-top: 1px solid rgba(255,255,255,.08); border-bottom: none; }
-
-a.button{
-  display:inline-block;
-  background:#25324a;
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg);
   color:var(--text);
-  padding:10px 14px;
-  border-radius:10px;
+  line-height:1.5;
+}
+
+/* Frame */
+header,footer{
+  padding:16px;
+  text-align:center;
+  background:#e9edf5;
+  border-bottom:1px solid #dbe3f4;
+}
+footer{ border-top:1px solid #dbe3f4; border-bottom:none }
+.subtitle{ color:var(--muted); margin-top:4px }
+
+main{ max-width:860px; margin:0 auto; padding:20px; display:grid; gap:16px }
+section{
+  background:var(--card);
+  padding:18px;
+  border:1px solid #e0e6f2;
+  border-radius:14px;
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+
+/* Game text */
+#prompt{ font-size:1.3rem; margin:0 0 14px }
+#status{ color:var(--muted) }
+
+/* Buttons */
+button, .file-label, a.button{
+  appearance:none;
+  border:none;
+  background:#e9f0ff;
+  color:var(--text);
+  padding:11px 16px;
+  border-radius:12px;
+  cursor:pointer;
   font-weight:600;
   text-decoration:none;
 }
+button:hover, a.button:hover{ opacity:.9 }
+button:focus-visible, a.button:focus-visible{
+  outline:3px solid rgba(43,116,255,.35);
+  outline-offset:2px;
+}
+
+/* Primary actions */
+#btnYes{ background:var(--yes); color:#fff }
+#btnNo{ background:var(--no); color:#fff }
+#btnProb, #btnPNot, #btnIDK{ background:#d8e4ff }
+#btnUndo, #btnRestart{ background:#e6edf7 }
+#btnExport{ background:var(--accent); color:#fff }
+
+/* Controls layout: keeps rows tight with even gaps */
+.controls{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:12px;                  /* space between the two rows */
+}
+.buttons, .secondary{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 12px;             /* row-gap column-gap */
+  width:max-content;         /* shrink-wrap to content */
+  max-width:100%;
+}
+.buttons > *, .secondary > *{ margin:0 } /* enforce gap-based spacing */
+
+.hidden{ display:none !important }
+
+/* Result Bar */
+#resultBar{
+  margin-top:18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+#resultBar.hidden{ display:none }
+
+/* Modal */
+.modal{
+  position:fixed; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.35); z-index:50;
+}
+.modal .sheet{
+  width:min(640px,92vw);
+  background:#fff;
+  border:1px solid #e6ecf7;
+  border-radius:14px;
+  padding:18px;
+  box-shadow:0 30px 60px rgba(15,23,42,.15);
+}
+.modal label{ display:block; margin:8px 0 6px }
+.modal input[type="text"]{
+  width:100%;
+  background:#fff;
+  border:1px solid #cdd9ee;
+  color:var(--text);
+  padding:10px;
+  border-radius:10px;
+}
+.inline label{ margin-right:12px }
+.rowbtns{ display:flex; gap:8px; margin-top:10px }
+.error{
+  background:#fff0f0;
+  color:#8a1f1f;
+  border:1px solid #ffc7c7;
+  padding:8px;
+  border-radius:8px;
+  margin-top:8px;
+}
+.small{ font-size:.9rem }
+.learning #game{ display:none }
+
+/* Decision Tree Panel (light, unobtrusive) */
+#treePanel{
+  position: fixed; right: 12px; bottom: 12px; z-index: 60;
+  width: min(560px, 92vw); height: min(70vh, 92vh);
+  background: var(--card); color: var(--text);
+  border: 1px solid #e0e6f2; border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.15);
+  display: grid; grid-template-rows: auto 1fr;
+}
+#treePanel.hidden{ display:none; }
+.treeHead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 12px; border-bottom:1px solid #e6ecf7; background:#f3f6fb;
+}
+.treeActions{ display:flex; gap:8px; }
+#treeCanvasWrap{ overflow:auto; padding:6px; }
+#treeSvg{ min-width:520px; min-height:420px; }
+
+/* Node/edge styling (SVG) */
+.nodeRect{ fill:#ffffff; stroke:#cfd8ea; stroke-width:1.2; rx:8; }
+.leafRect{ fill:#eef5ff; stroke:#a7c1ff; stroke-width:1.2; rx:8; }
+.nodeText{ font: 12px/1.35 ui-sans-serif, system-ui, Segoe UI, Arial; fill:#0b1426; }
+.edge{ stroke:#b9c6df; stroke-width:1.2; }
+.edgeYes{ stroke:#13b06e; }
+.edgeNo{ stroke:#e74c3c; }
+.edgeLbl{ font: 11px ui-sans-serif, system-ui; fill:#5a6c82; }
+
+/* --- Decision Tree Panel: base + animation states --- */
+#treePanel{
+  position: fixed; right: 12px; bottom: 12px; z-index: 60;
+  width: min(560px, 92vw); height: min(70vh, 92vh);
+  background: var(--card); color: var(--text);
+  border: 1px solid #e0e6f2; border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(2,15,48,0.15);
+  display: grid; grid-template-rows: auto 1fr;
+
+  /* animation defaults */
+  transform: translateY(12px) scale(.98);
+  opacity: 0;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+/* hidden = removed from layout (no pointer events / no a11y focus) */
+#treePanel.hidden { display: none; }
+
+/* open = visible + animated in */
+#treePanel.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.treeHead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 12px; border-bottom:1px solid #e6ecf7; background:#f3f6fb;
+}
+
+#treeCanvasWrap{ padding:8px; overflow:auto; }
+#treeSvg{ width:100%; height:100%; }
+
+/* Tree viewer emphasis */
+.nodeRect, .leafRect { opacity: .35; transition: opacity .2s ease, stroke .2s ease; }
+.edge { stroke: #8aa2c0; stroke-width: 1; opacity: .25; }
+.edgeYes { stroke: #5cb85c; }
+.edgeNo  { stroke: #e06565; }
+.edgeLbl { fill: #667e9a; font-size: 12px; opacity: .35; }
+
+.activeNode { opacity: 1 !important; stroke: #3b82f6; stroke-width: 1.5; }
+.edge.active { opacity: 1 !important; stroke-width: 1.5; }
+.edgeLbl.active { opacity: .9 !important; font-weight: 600; }

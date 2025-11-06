@@ -33,17 +33,11 @@
 
   <script src="app.js" defer></script>
   <script>
-    // Hard guard: if not admin, prompt; if still not admin, bounce to index
     document.addEventListener('DOMContentLoaded', () => {
       if (!window.PathFinder_isAdmin || !window.PathFinder_isAdmin()) {
         const ok = window.PathFinder_promptAdmin && window.PathFinder_promptAdmin();
-        if (!ok) {
-          alert('Admin required.');
-          location.href = 'index.html';
-          return;
-        }
+        if (!ok) { alert('Admin required.'); location.href = 'index.html'; return; }
       }
-      // Wire logout button
       const btn = document.getElementById('btnAdminLogout');
       if (btn && window.PathFinder_setAdmin) {
         btn.addEventListener('click', () => {
