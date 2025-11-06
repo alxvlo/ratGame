@@ -1,0 +1,60 @@
+{
+  "type": "q",
+  "text": "Is the person real (not fictional)?",
+  "yes": {
+    "type": "q",
+    "text": "Is the person primarily known for science/technology?",
+    "yes": {
+      "type": "a",
+      "name": "Albert Einstein"
+    },
+    "no": {
+      "type": "q",
+      "text": "Is the person a musician?",
+      "yes": {
+        "type": "a",
+        "name": "Taylor Swift"
+      },
+      "no": {
+        "type": "a",
+        "name": "LeBron James"
+      }
+    }
+  },
+  "no": {
+    "type": "q",
+    "text": "Is the character from a comic book universe?",
+    "yes": {
+      "type": "q",
+      "text": "Is the character associated with Marvel?",
+      "yes": {
+        "type": "a",
+        "name": "Spider-Man"
+      },
+      "no": {
+        "type": "a",
+        "name": "Batman"
+      }
+    },
+    "no": {
+      "type": "q",
+      "text": "yeah",
+      "yes": {
+        "type": "a",
+        "name": "largerat"
+      },
+      "no": {
+        "type": "q",
+        "text": "Is the person a famous sharpshooter from the Atlanta Hawks?",
+        "yes": {
+          "type": "a",
+          "name": "Kyle Korver"
+        },
+        "no": {
+          "type": "a",
+          "name": "Mario"
+        }
+      }
+    }
+  }
+}

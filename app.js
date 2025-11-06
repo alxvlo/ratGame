@@ -271,25 +271,66 @@ function exportTree(){
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='pathfinder_tree.json';
   document.body.appendChild(a); a.click(); a.remove();
 }
+
 function importTree(file){
   if(!window.PathFinder_isAdmin()){ alert('Admin only.'); return; }
   downloadBackup('pathfinder_backup_before_import.json');
-  const r=new FileReader();
-  r.onload=()=>{
-    try{
+
+  const r = new FileReader();
+  r.onload = () => {
+    try {
       const obj = JSON.parse(r.result);
-      if(!obj || (obj.type!=='q' && obj.type!=='a')) throw new Error('Invalid root');
-      const repaired = cleanTree(obj);
-      if(!repaired) throw new Error('After repair, tree became empty (file was invalid).');
-      tree = repaired;
-      saveTree();
+      if (!obj || (obj.type !== 'q' && obj.type !== 'a')) throw new Error('Invalid root');
+      const newBranch = cleanTree(obj);
+      if (!newBranch) throw new Error('After repair, tree became empty (file invalid).');
+
+      // Ask admin: merge or replace
+      const mode = prompt(
+        "Type 'replace' to overwrite entire tree,\n" +
+        "or enter merge path (like 'real>sports' or 'fictional>comics'):"
+      );
+      if (!mode) { alert('Cancelled.'); return; }
+
+      if (mode.trim().toLowerCase() === 'replace') {
+        tree = newBranch;
+        saveTree();
+        restart(false);
+        alert('Tree replaced successfully.');
+        refreshTreeViewIfOpen();
+        return;
+      }
+
+      // Parse path like "real>sports" or "fictional>comics"
+      const segments = mode.split('>').map(s => s.trim().toLowerCase()).filter(Boolean);
+      if (!segments.length) throw new Error('Invalid path.');
+
+      let cursor = tree;
+      let lastQ = null;
+      for (const seg of segments) {
+        if (!cursor || cursor.type !== 'q') throw new Error(`Path stopped at "${seg}". Node not found.`);
+        const yesMatch = cursor.text.toLowerCase().includes(seg);
+        lastQ = cursor;
+        cursor = yesMatch ? cursor.yes : cursor.no;
+      }
+
+      if (!lastQ) throw new Error('Could not locate merge point.');
+
+      const choice = confirm("Merge as YES branch? (Cancel = NO branch)");
+      if (choice) lastQ.yes = newBranch;
+      else lastQ.no = newBranch;
+
+      saveTreeClean();
       restart(false);
-      alert('Import successful (auto-repaired).');
+      alert(`Merged under path: ${segments.join(' > ')} (${choice ? 'YES' : 'NO'} branch)`);
       refreshTreeViewIfOpen();
-    }catch(e){ alert('Import failed: '+e.message); }
+    } catch (e) {
+      alert('Import failed: ' + e.message);
+      console.error(e);
+    }
   };
   r.readAsText(file);
 }
+
 
 // ------------------ Debug (admin-only, optional via ?debug=true) ------------------
 function isDebug(){ return /(^|\?)debug=true($|&)/.test(location.search); }
@@ -563,6 +604,30 @@ document.addEventListener('DOMContentLoaded',()=>{
     buildDebugPanel(); // admin + ?debug=true
   }
 });
+
+// ------------------ Restart function ------------------
+function restart(clearStorage = false) {
+  if (clearStorage) {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) { console.warn(e); }
+  }
+  // Reset the decision state
+  path = [];
+  current = tree;
+  awaitingConfirmation = false;
+  pendingWrongLeaf = null;
+  isLearning = false;
+
+  // Hide any result or modal
+  hideResult();
+  setLearning(false);
+
+  // Re-render the first question
+  render();
+  refreshTreeViewIfOpen();
+  console.log('PathFinder restarted.');
+}
+
+
 
 // ------------------ Persistence ------------------
 function saveTreeToLocal(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(tree)); }catch(e){ console.error(e); } }

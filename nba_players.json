@@ -1,0 +1,28 @@
+{
+  "type": "q",
+  "text": "Is the player currently active in the NBA?",
+  "yes": {
+    "type": "q",
+    "text": "Does he play for the Golden State Warriors?",
+    "yes": {
+      "type": "a",
+      "name": "Stephen Curry"
+    },
+    "no": {
+      "type": "a",
+      "name": "LeBron James"
+    }
+  },
+  "no": {
+    "type": "q",
+    "text": "Did he play for the Chicago Bulls?",
+    "yes": {
+      "type": "a",
+      "name": "Michael Jordan"
+    },
+    "no": {
+      "type": "a",
+      "name": "Kobe Bryant"
+    }
+  }
+}

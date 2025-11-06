@@ -1,0 +1,28 @@
+{
+  "type": "q",
+  "text": "Is the person currently in government office?",
+  "yes": {
+    "type": "q",
+    "text": "Is the person the President of the Philippines?",
+    "yes": {
+      "type": "a",
+      "name": "Ferdinand Marcos Jr."
+    },
+    "no": {
+      "type": "a",
+      "name": "Sara Duterte"
+    }
+  },
+  "no": {
+    "type": "q",
+    "text": "Was the person a former Vice President?",
+    "yes": {
+      "type": "a",
+      "name": "Leni Robredo"
+    },
+    "no": {
+      "type": "a",
+      "name": "Benigno Aquino III"
+    }
+  }
+}
