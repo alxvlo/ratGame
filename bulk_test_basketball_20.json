@@ -1,0 +1,311 @@
+{
+  "people": [
+    {
+      "id": "p_sports_lebron_james",
+      "name": "LeBron James",
+      "aliases": [
+        "King James",
+        "LBJ"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "small forward",
+        "country": "USA",
+        "team": "Los Angeles Lakers",
+        "era": "2000s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_stephen_curry",
+      "name": "Stephen Curry",
+      "aliases": [
+        "Steph",
+        "Chef Curry"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "point guard",
+        "country": "USA",
+        "team": "Golden State Warriors",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_kevin_durant",
+      "name": "Kevin Durant",
+      "aliases": [
+        "KD"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "small forward",
+        "country": "USA",
+        "team": "Phoenix Suns",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_luka_doncic",
+      "name": "Luka Dončić",
+      "aliases": [
+        "Luka Doncic"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "point guard",
+        "country": "Slovenia",
+        "team": "Dallas Mavericks",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_nikola_jokic",
+      "name": "Nikola Jokić",
+      "aliases": [
+        "Nikola Jokic",
+        "Joker"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "center",
+        "country": "Serbia",
+        "team": "Denver Nuggets",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_giannis_antetokounmpo",
+      "name": "Giannis Antetokounmpo",
+      "aliases": [
+        "Giannis"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "power forward",
+        "country": "Greece",
+        "team": "Milwaukee Bucks",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_joel_embiid",
+      "name": "Joel Embiid",
+      "aliases": [],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "center",
+        "country": "Cameroon",
+        "team": "Philadelphia 76ers",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_jayson_tatum",
+      "name": "Jayson Tatum",
+      "aliases": [],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "small forward",
+        "country": "USA",
+        "team": "Boston Celtics",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_jimmy_butler",
+      "name": "Jimmy Butler",
+      "aliases": [],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "small forward",
+        "country": "USA",
+        "team": "Miami Heat",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_damian_lillard",
+      "name": "Damian Lillard",
+      "aliases": [
+        "Dame"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "point guard",
+        "country": "USA",
+        "team": "Milwaukee Bucks",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_kyrie_irving",
+      "name": "Kyrie Irving",
+      "aliases": [],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "point guard",
+        "country": "USA",
+        "team": "Dallas Mavericks",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_devin_booker",
+      "name": "Devin Booker",
+      "aliases": [],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "shooting guard",
+        "country": "USA",
+        "team": "Phoenix Suns",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_kawhi_leonard",
+      "name": "Kawhi Leonard",
+      "aliases": [],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "small forward",
+        "country": "USA",
+        "team": "LA Clippers",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_anthony_davis",
+      "name": "Anthony Davis",
+      "aliases": [
+        "AD"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "power forward",
+        "country": "USA",
+        "team": "Los Angeles Lakers",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_shai_gilgeous_alexander",
+      "name": "Shai Gilgeous-Alexander",
+      "aliases": [
+        "SGA"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "point guard",
+        "country": "Canada",
+        "team": "Oklahoma City Thunder",
+        "era": "2020s"
+      }
+    },
+    {
+      "id": "p_sports_ja_morant",
+      "name": "Ja Morant",
+      "aliases": [],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "point guard",
+        "country": "USA",
+        "team": "Memphis Grizzlies",
+        "era": "2020s"
+      }
+    },
+    {
+      "id": "p_sports_paul_george",
+      "name": "Paul George",
+      "aliases": [
+        "PG13"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "small forward",
+        "country": "USA",
+        "team": "Philadelphia 76ers",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_james_harden",
+      "name": "James Harden",
+      "aliases": [
+        "The Beard"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "shooting guard",
+        "country": "USA",
+        "team": "Los Angeles Clippers",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_chris_paul",
+      "name": "Chris Paul",
+      "aliases": [
+        "CP3"
+      ],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "point guard",
+        "country": "USA",
+        "team": "Golden State Warriors",
+        "era": "2010s-2020s"
+      }
+    },
+    {
+      "id": "p_sports_dirk_nowitzki",
+      "name": "Dirk Nowitzki",
+      "aliases": [],
+      "attrs": {
+        "is_fictional": false,
+        "domain": "sports",
+        "sport": "basketball",
+        "role": "power forward",
+        "country": "Germany",
+        "team": "Dallas Mavericks",
+        "era": "1990s-2010s"
+      }
+    }
+  ]
+}
