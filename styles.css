@@ -69,3 +69,74 @@ a.button{
   font-weight:600;
   text-decoration:none;
 }
+
+/* Admin-only extras */
+#treeView ul {
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(255,255,255,0.2);
+}
+#treeView li {
+  margin: 0.15rem 0;
+}
+
+#branch-delete-preview ul {
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(255,255,255,0.2);
+}
+#branch-delete-preview li {
+  margin: 0.15rem 0;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.io label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.io input[type="text"] {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: #0e1524;
+  color: var(--text);
+}
+
+#branch-delete-dialog {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: #121826;
+}
+
+/* Utility spacing classes (used in admin.html) */
+.mt-10 { margin-top: 10px; }
+.mt-16 { margin-top: 16px; }
+.mt-2rem { margin-top: 2rem; }
+.mt-6 { margin-top: 6px; }
+.mt-15 { margin-top: 1.5rem; }
+.mb-8 { margin-bottom: 8px; }
+.mb-075 { margin-bottom: 0.75rem; }
+.mb-05 { margin-bottom: 0.5rem; }
+.ml-8 { margin-left: 8px; }
+
+.pre-line { white-space: pre-line; }
+
+.btn-row {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dialog-hidden {
+  display: none;
+}

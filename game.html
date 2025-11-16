@@ -23,8 +23,8 @@
         <button id="btnIDK">I don’t know</button>
       </div>
       <div class="secondary">
-        <button id="btnUndo" title="Go back one step">Undo</button>
-        <button id="btnRestart" title="Restart from the beginning">Restart</button>
+        <button id="btnUndo">Undo</button>
+        <button id="btnRestart">Restart</button>
       </div>
       <div id="status"></div>
     </section>
@@ -33,8 +33,28 @@
   <footer>
     <small>&copy; PathFinder.</small>
     <a class="button" href="index.html" style="margin-left:8px;">Home</a>
-    <button id="btnAdminLogin" title="Admin" style="margin-left:8px;">Admin</button>
+    <button id="btnAdminLogin" style="margin-left:8px;">Admin</button>
   </footer>
+
+  <!-- FIREBASE SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBKgu6bNTeKw2vujOR9Ma6Vx9L69YW4v28",
+      authDomain: "pathfinder-global.firebaseapp.com",
+      projectId: "pathfinder-global",
+      storageBucket: "pathfinder-global.firebasestorage.app",
+      messagingSenderId: "265007807340",
+      appId: "1:265007807340:web:ab93c6b5110f618c831149"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window._pfFirebase = { db, doc, getDoc, setDoc };
+  </script>
 
   <script src="app.js" defer></script>
 </body>

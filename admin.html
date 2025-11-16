@@ -9,31 +9,140 @@
 <body>
   <header>
     <h1>PathFinder — Admin</h1>
-    <p class="subtitle">Import/Export decision tree (admin only)</p>
+    <p class="subtitle">Import/Export tree, manage questions &amp; characters (admin only)</p>
   </header>
 
   <main>
+    <!-- MANAGE: Import / Export + character delete/rename -->
     <section id="manage">
       <h2>Manage knowledge</h2>
+
+      <!-- Import / Export -->
       <div class="io">
         <button id="btnExport">Export Tree (JSON)</button>
         <label for="fileImport" class="file-label">Import JSON</label>
         <input id="fileImport" type="file" accept="application/json" />
       </div>
-      <p class="muted" style="margin-top:10px">
-        Admin session lasts until you close this tab. <a href="index.html">Back to game</a>
+
+      <hr />
+
+      <!-- Delete character -->
+      <h3>Delete character (global)</h3>
+      <div class="io">
+        <label for="deleteNameSelect">Select character to delete:</label>
+        <select id="deleteNameSelect"></select>
+        <button id="btnDeleteCharacter">Delete</button>
+      </div>
+      <p class="muted mt-10">
+        This removes every leaf with that name from the shared decision tree.
       </p>
+
+      <!-- Rename character -->
+      <h3 class="mt-16">Rename character</h3>
+      <div class="io mb-8">
+        <label for="renameNameSelect">Select character to rename:</label>
+        <select id="renameNameSelect"></select>
+      </div>
+      <div class="io">
+        <label for="renameNewName">New name:</label>
+        <input id="renameNewName" type="text" placeholder="Enter new character name…" />
+        <button id="btnRenameCharacter">Rename</button>
+      </div>
+      <p class="muted mt-10">
+        This renames all leaves with the selected name (useful if you spelled it wrong).
+      </p>
+
+      <p class="muted mt-10">
+        Admin session lasts until you close this tab.
+        <a href="index.html">Back to game</a>
+      </p>
+    </section>
+
+    <!-- QUESTIONS + TREE SECTION -->
+    <section id="admin-questions" class="mt-2rem">
+      <h2>Questions &amp; Tree</h2>
+      <p class="muted">
+        This section reads the <strong>actual binary decision tree</strong> currently stored in
+        Firestore. You can inspect questions, see which branch will be deleted, and preview the
+        structure before confirming.
+      </p>
+
+      <!-- Question list -->
+      <h3>Question overview</h3>
+      <table id="questions-table" border="1" cellpadding="6" cellspacing="0" style="width:100%; border-collapse:collapse;">
+        <thead>
+          <tr>
+            <th>Path</th>
+            <th>Question Text</th>
+            <th>Depth</th>
+            <th># Leaves under this question</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filled by app.js -->
+        </tbody>
+      </table>
+      <p class="muted mt-6">
+        Path uses <code>Y</code> and <code>N</code> from the root (e.g., <code>YN</code> = Yes then No).
+      </p>
+
+      <!-- Delete-branch dialog with preview -->
+      <div id="branch-delete-dialog" class="dialog-hidden">
+        <p id="branch-delete-summary" class="pre-line mb-075"></p>
+        <p class="muted mb-05">Preview of the branch that will be deleted:</p>
+        <div id="branch-delete-preview"></div>
+
+        <div class="btn-row">
+          <button id="branch-delete-confirm" type="button">Delete this branch</button>
+          <button id="branch-delete-cancel" type="button">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Full tree viewer -->
+      <h3 class="mt-15">Tree viewer</h3>
+      <p class="muted">
+        This is the entire decision tree as it exists in Firestore. Questions are marked with
+        <code>Q [path]</code>, answers with <code>A [path]</code>.
+      </p>
+      <div id="treeView"></div>
     </section>
   </main>
 
   <footer>
     <small>&copy; PathFinder Admin</small>
-    <button id="btnAdminLogout" style="margin-left:8px;">Sign out</button>
+    <button id="btnAdminLogout" class="ml-8">Sign out</button>
   </footer>
 
+  <!-- Optional legacy core (safe to keep, even if unused) -->
+  <script src="pf-core.js"></script>
+
+  <!-- FIREBASE SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBKgu6bNTeKw2vujOR9Ma6Vx9L69YW4v28",
+      authDomain: "pathfinder-global.firebaseapp.com",
+      projectId: "pathfinder-global",
+      storageBucket: "pathfinder-global.firebasestorage.app",
+      messagingSenderId: "265007807340",
+      appId: "1:265007807340:web:ab93c6b5110f618c831149"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Expose to app.js
+    window._pfFirebase = { db, doc, getDoc, setDoc };
+  </script>
+
+  <!-- Main shared logic (game + admin + index) -->
   <script src="app.js" defer></script>
+
+  <!-- Extra guard to ensure admin login for this page -->
   <script>
-    // Hard guard: if not admin, prompt; if still not admin, bounce to index
     document.addEventListener('DOMContentLoaded', () => {
       if (!window.PathFinder_isAdmin || !window.PathFinder_isAdmin()) {
         const ok = window.PathFinder_promptAdmin && window.PathFinder_promptAdmin();
@@ -43,7 +152,6 @@
           return;
         }
       }
-      // Wire logout button
       const btn = document.getElementById('btnAdminLogout');
       if (btn && window.PathFinder_setAdmin) {
         btn.addEventListener('click', () => {
