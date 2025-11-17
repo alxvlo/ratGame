@@ -27,13 +27,238 @@ const defaultTree = {
   text: 'Is the person real (not fictional)?',
   yes: {
     type: 'q',
-    text: 'Is the person primarily known for science/technology?',
-    yes: { type: 'a', name: 'Albert Einstein' },
+    text: 'Is the person primarily known for science or technology?',
+    yes: {
+      type: 'q',
+      text: 'Is the person associated with theoretical physics?',
+      yes: {
+        type: 'q',
+        text: 'Did this physicist develop the theory of relativity?',
+        yes: { type: 'a', name: 'Albert Einstein' },
+        no: { type: 'a', name: 'Stephen Hawking' }
+      },
+      no: {
+        type: 'q',
+        text: 'Is the person known for inventing electric devices?',
+        yes: {
+          type: 'q',
+          text: 'Did this inventor create the light bulb?',
+          yes: { type: 'a', name: 'Thomas Edison' },
+          no: { type: 'a', name: 'Nikola Tesla' }
+        },
+        no: {
+          type: 'q',
+          text: 'Is the person a tech entrepreneur?',
+          yes: {
+            type: 'q',
+            text: 'Did this person co-found Microsoft?',
+            yes: { type: 'a', name: 'Bill Gates' },
+            no: {
+              type: 'q',
+              text: 'Is this person the CEO of Tesla and SpaceX?',
+              yes: { type: 'a', name: 'Elon Musk' },
+              no: {
+                type: 'q',
+                text: 'Did this person co-found Apple?',
+                yes: { type: 'a', name: 'Steve Jobs' },
+                no: { type: 'a', name: 'Mark Zuckerberg' }
+              }
+            }
+          },
+          no: { type: 'a', name: 'Marie Curie' }
+        }
+      }
+    },
     no: {
       type: 'q',
-      text: 'Is the person a musician?',
-      yes: { type: 'a', name: 'Taylor Swift' },
-      no: { type: 'a', name: 'LeBron James' }
+      text: 'Is the person an entertainer (musician, actor, comedian)?',
+      yes: {
+        type: 'q',
+        text: 'Is the person a musician?',
+        yes: {
+          type: 'q',
+          text: 'Is the musician primarily a pop artist?',
+          yes: {
+            type: 'q',
+            text: 'Did this pop star start as a country singer before switching to pop?',
+            yes: { type: 'a', name: 'Taylor Swift' },
+            no: {
+              type: 'q',
+              text: 'Is this pop star known as the "King of Pop"?',
+              yes: { type: 'a', name: 'Michael Jackson' },
+              no: {
+                type: 'q',
+                text: 'Is this pop star from Barbados?',
+                yes: { type: 'a', name: 'Rihanna' },
+                no: {
+                  type: 'q',
+                  text: 'Is this pop star known for "Bad Guy"?',
+                  yes: { type: 'a', name: 'Billie Eilish' },
+                  no: { type: 'a', name: 'Ariana Grande' }
+                }
+              }
+            }
+          },
+          no: {
+            type: 'q',
+            text: 'Is the musician a rock artist?',
+            yes: {
+              type: 'q',
+              text: 'Was this rock artist the lead guitarist of Queen?',
+              yes: { type: 'a', name: 'Freddie Mercury' },
+              no: {
+                type: 'q',
+                text: 'Is this rock artist known for "Stairway to Heaven"?',
+                yes: { type: 'a', name: 'Robert Plant' },
+                no: { type: 'a', name: 'Kurt Cobain' }
+              }
+            },
+            no: {
+              type: 'q',
+              text: 'Is the musician a classical composer?',
+              yes: {
+                type: 'q',
+                text: 'Did this composer write Symphony No. 5?',
+                yes: { type: 'a', name: 'Ludwig van Beethoven' },
+                no: { type: 'a', name: 'Wolfgang Amadeus Mozart' }
+              },
+              no: {
+                type: 'q',
+                text: 'Is the musician a rapper?',
+                yes: {
+                  type: 'q',
+                  text: 'Is this rapper from Toronto, Canada?',
+                  yes: { type: 'a', name: 'Drake' },
+                  no: {
+                    type: 'q',
+                    text: 'Was this rapper known as Slim Shady?',
+                    yes: { type: 'a', name: 'Eminem' },
+                    no: { type: 'a', name: 'Kendrick Lamar' }
+                  }
+                },
+                no: { type: 'a', name: 'Ed Sheeran' }
+              }
+            }
+          }
+        },
+        no: {
+          type: 'q',
+          text: 'Is the person an actor?',
+          yes: {
+            type: 'q',
+            text: 'Did this actor play Iron Man in the MCU?',
+            yes: { type: 'a', name: 'Robert Downey Jr.' },
+            no: {
+              type: 'q',
+              text: 'Is this actor known for playing Jack Sparrow?',
+              yes: { type: 'a', name: 'Johnny Depp' },
+              no: {
+                type: 'q',
+                text: 'Did this actor star in Titanic?',
+                yes: { type: 'a', name: 'Leonardo DiCaprio' },
+                no: {
+                  type: 'q',
+                  text: 'Is this actress known for playing Hermione Granger?',
+                  yes: { type: 'a', name: 'Emma Watson' },
+                  no: { type: 'a', name: 'Tom Hanks' }
+                }
+              }
+            }
+          },
+          no: { type: 'a', name: 'Kevin Hart' }
+        }
+      },
+      no: {
+        type: 'q',
+        text: 'Is the person a professional athlete?',
+        yes: {
+          type: 'q',
+          text: 'Is the athlete known for basketball?',
+          yes: {
+            type: 'q',
+            text: 'Did this basketball player play for the LA Lakers and Miami Heat?',
+            yes: { type: 'a', name: 'LeBron James' },
+            no: {
+              type: 'q',
+              text: 'Is this basketball player known as "His Airness"?',
+              yes: { type: 'a', name: 'Michael Jordan' },
+              no: { type: 'a', name: 'Stephen Curry' }
+            }
+          },
+          no: {
+            type: 'q',
+            text: 'Is the athlete known for soccer (football)?',
+            yes: {
+              type: 'q',
+              text: 'Does this soccer player play for Inter Miami and won the World Cup in 2022?',
+              yes: { type: 'a', name: 'Lionel Messi' },
+              no: {
+                type: 'q',
+                text: 'Is this soccer player from Portugal?',
+                yes: { type: 'a', name: 'Cristiano Ronaldo' },
+                no: { type: 'a', name: 'Neymar Jr.' }
+              }
+            },
+            no: {
+              type: 'q',
+              text: 'Is the athlete known for tennis?',
+              yes: {
+                type: 'q',
+                text: 'Is this tennis player known for 23 Grand Slam titles?',
+                yes: { type: 'a', name: 'Serena Williams' },
+                no: { type: 'a', name: 'Roger Federer' }
+              },
+              no: {
+                type: 'q',
+                text: 'Is the athlete known for boxing?',
+                yes: {
+                  type: 'q',
+                  text: 'Is this boxer known as "The Greatest"?',
+                  yes: { type: 'a', name: 'Muhammad Ali' },
+                  no: { type: 'a', name: 'Floyd Mayweather' }
+                },
+                no: { type: 'a', name: 'Usain Bolt' }
+              }
+            }
+          }
+        },
+        no: {
+          type: 'q',
+          text: 'Is the person a political leader or historical figure?',
+          yes: {
+            type: 'q',
+            text: 'Was this person a U.S. President?',
+            yes: {
+              type: 'q',
+              text: 'Was this president the first African American U.S. President?',
+              yes: { type: 'a', name: 'Barack Obama' },
+              no: {
+                type: 'q',
+                text: 'Did this president serve during the Civil War?',
+                yes: { type: 'a', name: 'Abraham Lincoln' },
+                no: { type: 'a', name: 'George Washington' }
+              }
+            },
+            no: {
+              type: 'q',
+              text: 'Was this person a civil rights leader?',
+              yes: {
+                type: 'q',
+                text: 'Did this leader deliver the "I Have a Dream" speech?',
+                yes: { type: 'a', name: 'Martin Luther King Jr.' },
+                no: { type: 'a', name: 'Nelson Mandela' }
+              },
+              no: {
+                type: 'q',
+                text: 'Was this person a queen of the United Kingdom?',
+                yes: { type: 'a', name: 'Queen Elizabeth II' },
+                no: { type: 'a', name: 'Mahatma Gandhi' }
+              }
+            }
+          },
+          no: { type: 'a', name: 'Oprah Winfrey' }
+        }
+      }
     }
   },
   no: {
@@ -41,11 +266,151 @@ const defaultTree = {
     text: 'Is the character from a comic book universe?',
     yes: {
       type: 'q',
-      text: 'Is the character associated with Marvel?',
-      yes: { type: 'a', name: 'Spider-Man' },
-      no: { type: 'a', name: 'Batman' }
+      text: 'Is the character associated with Marvel Comics?',
+      yes: {
+        type: 'q',
+        text: 'Does this Marvel character have spider-based powers?',
+        yes: { type: 'a', name: 'Spider-Man' },
+        no: {
+          type: 'q',
+          text: 'Does this Marvel character wield a shield with a star?',
+          yes: { type: 'a', name: 'Captain America' },
+          no: {
+            type: 'q',
+            text: 'Is this Marvel character a billionaire in a powered suit?',
+            yes: { type: 'a', name: 'Iron Man' },
+            no: {
+              type: 'q',
+              text: 'Does this Marvel character turn green when angry?',
+              yes: { type: 'a', name: 'The Hulk' },
+              no: {
+                type: 'q',
+                text: 'Is this Marvel character the God of Thunder?',
+                yes: { type: 'a', name: 'Thor' },
+                no: {
+                  type: 'q',
+                  text: 'Is this Marvel character known for breaking the fourth wall?',
+                  yes: { type: 'a', name: 'Deadpool' },
+                  no: { type: 'a', name: 'Black Widow' }
+                }
+              }
+            }
+          }
+        }
+      },
+      no: {
+        type: 'q',
+        text: 'Is the character from DC Comics?',
+        yes: {
+          type: 'q',
+          text: 'Is this DC character known as the Dark Knight from Gotham?',
+          yes: { type: 'a', name: 'Batman' },
+          no: {
+            type: 'q',
+            text: 'Does this DC character have an "S" symbol and fly?',
+            yes: { type: 'a', name: 'Superman' },
+            no: {
+              type: 'q',
+              text: 'Is this DC character an Amazonian warrior princess?',
+              yes: { type: 'a', name: 'Wonder Woman' },
+              no: {
+                type: 'q',
+                text: 'Is this DC character known for super speed?',
+                yes: { type: 'a', name: 'The Flash' },
+                no: { type: 'a', name: 'Aquaman' }
+              }
+            }
+          }
+        },
+        no: { type: 'a', name: 'Spawn' }
+      }
     },
-    no: { type: 'a', name: 'Mario' }
+    no: {
+      type: 'q',
+      text: 'Is the character primarily from video games?',
+      yes: {
+        type: 'q',
+        text: 'Is this character a plumber who wears red and a mustache?',
+        yes: { type: 'a', name: 'Mario' },
+        no: {
+          type: 'q',
+          text: 'Is this character a blue hedgehog known for speed?',
+          yes: { type: 'a', name: 'Sonic the Hedgehog' },
+          no: {
+            type: 'q',
+            text: 'Is this character a hero in green tunic from Hyrule?',
+            yes: { type: 'a', name: 'Link' },
+            no: {
+              type: 'q',
+              text: 'Is this character a yellow creature that says "Pika Pika"?',
+              yes: { type: 'a', name: 'Pikachu' },
+              no: {
+                type: 'q',
+                text: 'Is this character a Spartan super-soldier in green armor?',
+                yes: { type: 'a', name: 'Master Chief' },
+                no: { type: 'a', name: 'Lara Croft' }
+              }
+            }
+          }
+        }
+      },
+      no: {
+        type: 'q',
+        text: 'Is the character from an animated series or movie?',
+        yes: {
+          type: 'q',
+          text: 'Is this character a yellow sponge who lives in a pineapple?',
+          yes: { type: 'a', name: 'SpongeBob SquarePants' },
+          no: {
+            type: 'q',
+            text: 'Is this character a mouse associated with Disney?',
+            yes: { type: 'a', name: 'Mickey Mouse' },
+            no: {
+              type: 'q',
+              text: 'Is this character a snowman who likes warm hugs?',
+              yes: { type: 'a', name: 'Olaf' },
+              no: {
+                type: 'q',
+                text: 'Is this character a yellow character with spiky head from The Simpsons?',
+                yes: { type: 'a', name: 'Bart Simpson' },
+                no: {
+                  type: 'q',
+                  text: 'Is this character a cat and mouse duo where the cat chases the mouse?',
+                  yes: { type: 'a', name: 'Tom' },
+                  no: { type: 'a', name: 'Bugs Bunny' }
+                }
+              }
+            }
+          }
+        },
+        no: {
+          type: 'q',
+          text: 'Is the character from a book or novel?',
+          yes: {
+            type: 'q',
+            text: 'Is this character a young wizard with a lightning scar?',
+            yes: { type: 'a', name: 'Harry Potter' },
+            no: {
+              type: 'q',
+              text: 'Is this character a detective living on Baker Street?',
+              yes: { type: 'a', name: 'Sherlock Holmes' },
+              no: {
+                type: 'q',
+                text: 'Is this character a hobbit who carried the One Ring?',
+                yes: { type: 'a', name: 'Frodo Baggins' },
+                no: {
+                  type: 'q',
+                  text: 'Is this character a vampire from Transylvania?',
+                  yes: { type: 'a', name: 'Count Dracula' },
+                  no: { type: 'a', name: 'Katniss Everdeen' }
+                }
+              }
+            }
+          },
+          no: { type: 'a', name: 'Darth Vader' }
+        }
+      }
+    }
   }
 };
 
